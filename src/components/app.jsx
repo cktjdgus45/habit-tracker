@@ -41,6 +41,7 @@ class App extends Component {
     this.setState({ habits: habits });
   }
   render() {
+    console.log('app');
     return (
       <>
         <Navbar totalCount={this.state.habits.filter(item => item.count !== 0).length} />
