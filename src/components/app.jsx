@@ -13,32 +13,40 @@ class App extends Component {
     ]
   }
   handleIncreament = (habit) => {
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    habits[index].count++;
-    this.setState({ habits: habits });
+    const habits = this.state.habits.map(item => {
+      if (item.id === habit.id) {
+        return { ...habit, count: habit.count + 1 }
+      }
+      return item;
+    })
+    this.setState({ habits });
   };
   handleDecreament = (habit) => {
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    const count = habits[index].count - 1;
-    habits[index].count = count < 0 ? 0 : count;
-    this.setState({ habits: habits })
+    const habits = this.state.habits.map(item => {
+      if (item.id === habit.id) {
+        const count = habit.count - 1;
+        return { ...habit, count: count < 0 ? 0 : count }
+      }
+      return item;
+    })
+    this.setState({ habits });
   };
   handleDelete = (habit) => {
     const habits = this.state.habits.filter(item => item.id !== habit.id);
-    this.setState({ habits: habits })
+    this.setState({ habits })
   };
   handleAdd = (name) => {
     const habits = [...this.state.habits, { id: this.state.habits.length + 1, name, count: 0 }];
-    this.setState({ habits: habits })
+    this.setState({ habits })
   };
   handleReset = () => {
     const habits = this.state.habits.map(habit => {
-      habit.count = 0;
+      if (habit.count !== 0) {
+        return { ...habit, count: 0 }
+      }
       return habit;
     })
-    this.setState({ habits: habits });
+    this.setState({ habits });
   }
   render() {
     console.log('app');
