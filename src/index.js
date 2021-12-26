@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/app.jsx';
+import ReactHook from './components/reactHook.jsx';
 import '@fortawesome/fontawesome-free/js/all.js';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ReactHook />
   </React.StrictMode>,
   document.getElementById('root')
 );
